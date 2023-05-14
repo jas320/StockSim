@@ -14,7 +14,7 @@ public class OutputFormat {
     /** writes output to new file */
     static void toFileAuto(StockRep stockRep) {
         String path = "/homes/jas320/IdeaProjects/StockSim/src/OUTPUT.txt";
-        toFile(path, stockRep);
+        toFile(path, List.of(stockRep));
     }
 
     /** writes output to new file */
@@ -23,15 +23,6 @@ public class OutputFormat {
         toFile(path, stockReps);
     }
 
-    /** writes output to new file */
-    static void toFile(String path, StockRep stockRep) {
-        try (FileWriter fr = new FileWriter(path);
-             BufferedWriter br = new BufferedWriter(fr)) {
-            br.write(stockRep.toString());
-        } catch (IOException e) {
-            System.out.println("Error writing file" + e.getMessage());
-        }
-    }
 
     /** writes output to new file */
     static void toFile(String path, List<StockRep> stockReps) {

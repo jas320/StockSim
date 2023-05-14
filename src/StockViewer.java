@@ -1,5 +1,5 @@
 public class StockViewer implements StockViewInterface {
-    /** does something */
+    /** returns current price of given ticker symbol */
     @Override
     public StockRep price(String symbol) {
         return new StockRep(symbol, 1.0);
