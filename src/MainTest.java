@@ -10,3 +10,12 @@ class MainTest {
     }
 
 }
+
+//Interfaces
+// Interal representation of a stock.
+// Output interface
+// Error handler, excpetions
+// Enums
+// Input formatter, output formatter.
+
+// API just for viewing
