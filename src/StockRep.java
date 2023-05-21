@@ -1,9 +1,17 @@
+import java.util.Calendar;
 import java.util.Objects;
 
 public class StockRep {
 
     private final String symbol;
     private final double price;
+    private Calendar date;
+
+    public StockRep(String symbol, double price, Calendar date) {
+        this.symbol = symbol;
+        this.price = price;
+        this.date = date;
+    }
 
     public StockRep(String symbol, Double price) {
         this.symbol = symbol;
@@ -41,5 +49,9 @@ public class StockRep {
     @Override
     public int hashCode() {
         return Objects.hash(symbol, price);
+    }
+
+    public Calendar getDate() {
+        return date;
     }
 }

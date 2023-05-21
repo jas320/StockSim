@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,6 +35,39 @@ class YahooFinanceAPITest {
         List<StockRep> stockReps = api.prices("AAPL", "TSLA", "MSFT");
         stockReps.stream().forEach(i -> assertTrue(i.getPrice() > 0));
     }
+
+    @Test
+    void invalid_fx_call_retuns_invalid_stock_rep(){
+        StockRep stockRep = api.price("ZZZZZ");
+        assertEquals(stockRep.getSymbol(), "ERROR");
+        assertEquals(stockRep.getPrice(), -1.0);
+    }
+
+    @Test
+    void historical_prices_returns_price_at_each_interval() {
+        Calendar c1 = new Calendar.Builder().setDate(2020,1,1).build();
+        Calendar c2 = new Calendar.Builder().setDate(2020,3,1).build();
+        List<StockRep> stockReps = api.histPrices("AAPL", c1
+                , c2,
+                "m"
+                );
+        c1.add(Calendar.MONTH, 1);
+        assertEquals(stockReps.get(0).getDate(), c1);
+         assertEquals(stockReps.get(1).getDate(), c2);
+//        assertEquals(stockReps.get(1).getDate(), c2);
+
+    }
+
+    // fx and stock combined at the moment, can be seperated in the future.
+//    @Test
+//    void get_price_handles_fx_prices_should_return_positive_value() {
+//        StockRep stockRep = api.price("USDGBP=X");
+//        assertTrue(stockRep.getPrice() > 0);
+//    }
+
+
+
+
 
 
 

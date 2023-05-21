@@ -1,3 +1,6 @@
+import yahoofinance.histquotes.Interval;
+
+import java.util.Calendar;
 import java.util.List;
 
 public interface StockViewInterface {
@@ -7,4 +10,9 @@ public interface StockViewInterface {
 
     /** view prices of multiple stocks max 64 */
     List<StockRep> prices(String ... symbols);
+
+    /** view prices of single stock at regular interval between two dates
+     *  assumed to be the closing price on that day, or start of month/year,
+     *  */
+    List<StockRep> histPrices(String symbol, Calendar start, Calendar end, String interval);
 }

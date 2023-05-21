@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.List;
 
 public class StockViewer implements StockViewInterface {
@@ -9,6 +10,11 @@ public class StockViewer implements StockViewInterface {
 
     @Override
     public List<StockRep> prices(String... symbols) {
+        return null;
+    }
+
+    @Override
+    public List<StockRep> histPrices(String symbol, Calendar start, Calendar end, String interval) {
         return null;
     }
 }
