@@ -24,7 +24,6 @@ public class YahooFinanceAPI implements StockViewInterface{
     public StockRep price(String symbol){
         try {
             Stock stock = YahooFinance.get(symbol);
-            stock.getHistory();
             return handleStock(symbol, stock);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -84,7 +83,7 @@ public class YahooFinanceAPI implements StockViewInterface{
 //            BigDecimal peg = stock.getStats().getPeg();
 //            BigDecimal dividend = stock.getDividend().getAnnualYieldPercent();
         System.out.println(price);
-        stock.print();
+//        stock.print();
         return new StockRep(symbol, price.doubleValue());
     }
 

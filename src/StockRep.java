@@ -1,4 +1,7 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class StockRep {
@@ -14,6 +17,9 @@ public class StockRep {
     }
 
     public StockRep(String symbol, Double price) {
+        LocalDate localDate = LocalDate.now();
+        this.date = new Calendar.Builder().setDate(
+                localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth()).build();
         this.symbol = symbol;
         this.price = price;
     }

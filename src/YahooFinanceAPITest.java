@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import yahoofinance.quotes.fx.FxSymbols;
 
 import java.util.Calendar;
 import java.util.List;
@@ -35,6 +36,20 @@ class YahooFinanceAPITest {
         List<StockRep> stockReps = api.prices("AAPL", "TSLA", "MSFT");
         stockReps.stream().forEach(i -> assertTrue(i.getPrice() > 0));
     }
+    // TODO split stockRep and FXRep when requiring more unique fields.
+    // FX will default getHIstory() when printing stock so will be slower, consider running this less often
+    @Test
+    void get_price_data_of_EURUSD_should_return_positive_double_value() throws QueryException {
+        StockRep stockRep = api.price(FxSymbols.EURUSD);
+        assertTrue(stockRep.getPrice() > 0);
+        assertEquals(stockRep.getSymbol(), FxSymbols.EURUSD);
+        assertEquals(stockRep.getDate(), new Calendar.Builder().setDate(2023,5,21).build());
+    }
+    @Test
+    void get_prices_of_multiple_currency_pairs_returns_list_of_stock_reps_with_valid_prices() {
+        List<StockRep> stockReps = api.prices(FxSymbols.AUDCHF, FxSymbols.USDEUR, FxSymbols.USDGBP);
+        stockReps.stream().forEach(i -> assertTrue(i.getPrice() > 0));
+    }
 
     @Test
     void invalid_fx_call_retuns_invalid_stock_rep(){
@@ -43,6 +58,8 @@ class YahooFinanceAPITest {
         assertEquals(stockRep.getPrice(), -1.0);
     }
 
+
+    // TODO need to isolate the API call so can verify contents are parsed/mapped corretly.
     @Test
     void historical_prices_returns_price_at_each_interval() {
         Calendar c1 = new Calendar.Builder().setDate(2020,1,1).build();
@@ -57,6 +74,8 @@ class YahooFinanceAPITest {
 //        assertEquals(stockReps.get(1).getDate(), c2);
 
     }
+
+
 
     // fx and stock combined at the moment, can be seperated in the future.
 //    @Test
