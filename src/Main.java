@@ -35,7 +35,7 @@ public class Main {
     private static void handlePrice(String symbol) throws IOException {
         StockViewer stockViewer = new StockViewer();
         StockRep stockRep = stockViewer.price(symbol);
-        System.out.println(stockRep);
+        OutputFormat.toConsole(stockRep);
         OutputFormat.toFileAuto(stockRep);
     }
 

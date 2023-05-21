@@ -1,1 +1,1 @@
-StockRep{symbol='APPL', price=1.0}StockRep{symbol='NVDA', price=2.0}
+StockRep{symbol='APPl', price=1.0}

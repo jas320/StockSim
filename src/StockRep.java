@@ -10,6 +10,10 @@ public class StockRep {
         this.price = price;
     }
 
+    public static StockRep InvalidRep() {
+        return new StockRep("ERROR", -1.0);
+    }
+
     public String getSymbol() {
         return symbol;
     }
